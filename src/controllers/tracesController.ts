@@ -10,7 +10,7 @@ if (req.headers['x-client-ip']) {
   //IP = req.connection.remoteAddress
   IP = req.socket.remoteAddress
 }
-  console.log(req.socket)
+  console.log(req.headers)
   const trace = new Trace({ IP: IP, trace: req.body })
   trace.save()
   console.log('trace', IP)
