@@ -1,26 +1,26 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add typescript @type/node -D
+  /Users/jeromefeutelais/.nvm/versions/node/v16.15.1/bin/node /Users/jeromefeutelais/.nvm/versions/node/v16.15.1/bin/yarn add mongoose express bofy-parser
 
 PATH: 
-  C:\Python310\Scripts\;C:\Python310\;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\libnvvp;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\libnvvp;C:\Program Files\AdoptOpenJDK\jdk-11.0.9.101-hotspot\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\PuTTY\;C:\Program Files (x86)\Yarn\bin\;C:\Users\jerom\AppData\Roaming\npm;C:\Program Files\OpenJDK\openjdk-8u272-b10\bin;C:\Program Files\WireGuard\;C:\Android\android-sdk\platform-tools;C:\Users\jerom\AppData\Local\Programs\Python\Python38;C:\Users\jerom\AppData\Local\Programs\Python\Python38\Scripts;C:\Program Files\NVIDIA Corporation\Nsight Compute 2019.4.0\;C:\Program Files\dotnet\;C:\Program Files (x86)\Calibre2\;C:\Program Files (x86)\STMicroelectronics\STM32 ST-LINK Utility\ST-LINK Utility;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files (x86)\Tailscale IPN;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\OpenJDK\openjdk-11.0.15_10\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\jerom\.amplify\bin;C:\Users\jerom\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\jerom\AppData\Local\Programs\Python\Python38\;C:\Users\jerom\AppData\Local\Microsoft\WindowsApps;C:\Users\jerom\.dotnet\tools;C:\texlive\2019\bin\win32;C:\Users\jerom\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\jerom\AppData\Local\GitHubDesktop\bin;C:\Users\jerom\AppData\Local\Yarn\bin;C:\Users\jerom\AppData\Local\gitkraken\bin;C:\Users\jerom\AppData\Local\Programs\mongosh\;C:\Users\jerom\AppData\Local\Microsoft\WindowsApps;C:\Users\jerom\AppData\Roaming\npm;C:\jerome\Android\android-sdk\platform-tools;C:\jerome\openssl-3.0.3\openssl-3\x64\bin;
+  /Users/jeromefeutelais/.nvm/versions/node/v16.15.1/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin:/opt/homebrew/sbin
 
 Yarn version: 
-  1.22.5
+  1.22.19
 
 Node version: 
-  16.15.0
+  16.15.1
 
 Platform: 
-  win32 x64
+  darwin arm64
 
 Trace: 
-  Error: https://registry.npmjs.org/@type%2fnode: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66097:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140749:22)
+  Error: https://registry.yarnpkg.com/bofy-parser: Not found
+      at Request.params.callback [as _callback] (/Users/jeromefeutelais/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at Request.self.callback (/Users/jeromefeutelais/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:140890:22)
       at Request.emit (node:events:527:28)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141721:10)
+      at Request.<anonymous> (/Users/jeromefeutelais/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:141862:10)
       at Request.emit (node:events:527:28)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141643:12)
+      at IncomingMessage.<anonymous> (/Users/jeromefeutelais/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:141784:12)
       at Object.onceWrapper (node:events:641:28)
       at IncomingMessage.emit (node:events:539:35)
       at endReadableNT (node:internal/streams/readable:1345:12)
@@ -31,11 +31,33 @@ npm manifest:
     "name": "backupMongo",
     "version": "1.0.0",
     "main": "./bin/app.js",
-    "license": "MIT"
+    "license": "MIT",
+    "scripts": {
+      "build": "tsc",
+      "start": "node ./bin/app.js",
+      "dev": "ts-node ./src/app.ts",
+      "devStart": "nodemon ./src/app.ts"
+    },
+    "devDependencies": {
+      "@types/node": "^17.0.36",
+      "typescript": "^4.7.2"
+    }
   }
 
 yarn manifest: 
   No manifest
 
 Lockfile: 
-  No lockfile
+  # THIS IS AN AUTOGENERATED FILE. DO NOT EDIT THIS FILE DIRECTLY.
+  # yarn lockfile v1
+  
+  
+  "@types/node@^17.0.36":
+    version "17.0.36"
+    resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.36.tgz#c0d5f2fe76b47b63e0e0efc3d2049a9970d68794"
+    integrity sha512-V3orv+ggDsWVHP99K3JlwtH20R7J4IhI1Kksgc+64q5VxgfRkQG8Ws3MFm/FZOKDYGy9feGFlZ70/HpCNe9QaA==
+  
+  typescript@^4.7.2:
+    version "4.7.2"
+    resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.2.tgz#1f9aa2ceb9af87cca227813b4310fff0b51593c4"
+    integrity sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A==
