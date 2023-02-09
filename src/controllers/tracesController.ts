@@ -12,4 +12,5 @@ if (req.headers['x-client-ip']) {
   }
   const trace = new Trace({ IP: IP, trace: req.body })
   trace.save()
+  console.log('trace', IP)
 }
