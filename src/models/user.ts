@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const schema = mongoose.Schema
 
 const User = new schema({
-  name: { type: String, required: true },
+  name: { type: String, required: false },
   email: { type: String, required: true,unique: true },
   password: { type: String, required: true },
   date: { type: Date, default: Date.now() },
@@ -13,3 +13,4 @@ const User = new schema({
   resetPasswordExpires: { type: Date, required: false },
 });
 
+export default mongoose.model("User", User)

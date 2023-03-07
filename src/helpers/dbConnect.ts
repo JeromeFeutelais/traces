@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
-let mongostring:string
+let mongostring: string
+
 const uri_DB = process.env.URI_DB
 switch (process.env.NODE_ENV) {
   case 'prod':
@@ -32,4 +33,4 @@ function dbclose() {
   return mongoose.disconnect()
 }
 
-export default{ dbconnect, dbclose, mongostring }
+export default { dbconnect, dbclose, mongostring }
