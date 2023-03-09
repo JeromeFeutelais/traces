@@ -4,11 +4,11 @@
   "main": "./bin/app.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",express
+    "build": "tsc",
     "start": "node ./bin/app.js",
     "dev": "ts-node ./src/app.ts",
     "devStart": "nodemon ./src/app.ts",
-    "test": "ts-mocha src/**/*.test.ts --exit"
+    "test": "nyc --reporter=lcovonly ts-mocha src/**/*.test.ts --exit "
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -20,6 +20,8 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "^17.0.36",
     "dotenv": "^16.0.3",
+    "mocha-sonarqube-reporter": "^1.0.2",
+    "nyc": "^15.1.0",
     "typescript": "^4.7.2"
   },
   "dependencies": {
@@ -30,6 +32,7 @@
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
     "connect-mongodb-session": "^3.1.1",
+    "coveralls": "^3.1.1",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "mocha": "^10.2.0",

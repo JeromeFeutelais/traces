@@ -26,8 +26,8 @@ describe('User', () => {
       }
       createUser(user.email, user.password).then((user) => {
         expect(user).to.have.property('email')
-        expect(user).to.have.property('password')
-        expect(user).to.have.property('validationToken')
+        expect(user).to.not.have.property('password')
+        expect(user).to.not.have.property('validationToken')
         expect(user).to.have.property('validated')
         expect(user.validated).to.equal(false)
         done()
@@ -56,8 +56,10 @@ describe('User', () => {
         email: 'testUserB',
         password: 'simplePassword'
       }
-      createUser(user.email, user.password).then((user) => {
-        validateUser(user.email, user.validationToken).then((user) => {
+      createUser(user.email, user.password).then(async(user) => {
+        //get validation token
+        const newlyCreatedUser = await User.findOne({ email: user.email })
+        validateUser(user.email, newlyCreatedUser.validationToken).then((user) => {
           expect(user.validated).to.equal(true)
           done()
         }).catch((err) => {
@@ -77,12 +79,14 @@ describe('User', () => {
         email: 'testUserC',
         password: 'simplePassword'
       }
-      createUser(userTest.email, userTest.password).then((user) => {
-        validateUser(user.email, user.validationToken).then((user) => {
+      createUser(userTest.email, userTest.password).then(async(user) => {
+        //get validation token
+        const newlyCreatedUser = await User.findOne({ email: user.email })
+        validateUser(user.email, newlyCreatedUser.validationToken).then((user) => {
           login(userTest.email, userTest.password).then((user) => {
             expect(user).to.have.property('email')
-            expect(user).to.have.property('password')
-            expect(user).to.have.property('validationToken')
+            expect(user).to.not.have.property('password')
+            expect(user).to.not.have.property('validationToken')
             expect(user).to.have.property('validated')
             expect(user.validated).to.equal(true)
             done()
@@ -121,12 +125,14 @@ describe('User', () => {
         email: 'testUserE',
         password: 'simplePassword'
       }
-      createUser(userTest.email, userTest.password).then((user) => {
-        validateUser(user.email, user.validationToken).then((user) => {
+      createUser(userTest.email, userTest.password).then(async(user) => {
+        const newlyCreatedUser = await User.findOne({ email: user.email })
+        validateUser(userTest.email, newlyCreatedUser.validationToken).then((user) => {
           login(userTest.email, 'wrongPassword').then((user) => {
+            console.log('user wrong pssword', user)
             done()
           }).catch((err) => {
-            expect(err).to.equal('wrong password')
+            expect(err).to.equal('wrong credential')
             done()
           })
         }).catch((err) => {

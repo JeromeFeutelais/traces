@@ -18,7 +18,7 @@ export async function createUser(email: String, password: String) {
   })
   try {
     await newUser.save()
-    return Promise.resolve(newUser)
+    return Promise.resolve(cleanUserObject(newUser))
   } catch (e) {
     console.error('error in service')
     return Promise.reject(e)
@@ -31,7 +31,8 @@ export async function validateUser(email:String, token: String) {
   const user = await User.findOne({ email: email, validationToken: token })
   if (user) {
     user.validated = true
-    return user.save()
+    await user.save()
+    return cleanUserObject(user)
   }
 }
 
@@ -40,11 +41,13 @@ export async function login(email: String, password: String) {
   const user = await User.findOne({ email: email })
   if (user) {
     if (user.validated) {
+      console.log('before check password')
       const validPassword = await bcrypt.compare(password.toString(), user.password)
+      console.log('validPassword', validPassword)
     if (validPassword) {
-      return Promise.resolve(user)
+      return Promise.resolve(cleanUserObject(user))
     } else {
-      return Promise.reject('wrong password')
+      return Promise.reject('wrong credential')
     }
     } else {
       return Promise.reject('user not validated')
@@ -63,4 +66,11 @@ function randomString() {
 async function hashPassword(password: String) {
   const salt = await bcrypt.genSalt(10);
   return bcrypt.hash(password.toString(), salt);
+}
+
+function cleanUserObject(user: any) {
+  const userObject = user.toObject()
+  delete userObject.password
+  delete userObject.validationToken
+  return userObject
 }

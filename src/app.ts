@@ -8,6 +8,14 @@ console.log("bonjour")
 import * as userService from './services/userService'
 import mongoString from './helpers/dbConnect'
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import User from './models/user'
+
+declare module "express-session" {
+  interface SessionData {
+    user?: any //Todo: define user type
+  }
+}
+
 dotenv.config()
 
 mongooseConnect.dbconnect()
@@ -30,6 +38,19 @@ app.use(express.json())
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
+app.use(
+  expressSession({
+      secret: sessionSecret,
+      resave: false,
+      saveUninitialized: true,
+      store: new MongoDBStore({
+        collection: 'userSessions',
+        uri:
+          mongoString.mongostring,
+      }),
+    }),
+);
+  
 /**
  * set up routes
  */
@@ -42,19 +63,10 @@ app.use(function (req, res, next) {
   next(err)
 })
 
-app.use(
-    expressSession({
-      secret: sessionSecret,
-      resave: true,
-      saveUninitialized: true,
-      store: new MongoDBStore({
-        collection: 'userSessions',
-        uri:
-          mongoString.mongostring,
-      }),
-    }),
-  );
-   
+
+  
+
+
 
 
 
