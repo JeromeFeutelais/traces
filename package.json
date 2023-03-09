@@ -4,7 +4,7 @@
   "main": "./bin/app.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc",express
     "start": "node ./bin/app.js",
     "dev": "ts-node ./src/app.ts",
     "devStart": "nodemon ./src/app.ts",
