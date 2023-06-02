@@ -63,13 +63,6 @@ app.use(function (req, res, next) {
   next(err)
 })
 
-
-  
-
-
-
-
-
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err:Error, req:express.Request, res:express.Response, next:express.NextFunction) {
@@ -81,3 +74,5 @@ let port = 4000
 var server = http.listen(process.env.PORT || port, () => {
   console.log('Traces server is running on port', server.address().port)
 })
+
+module.exports = app
