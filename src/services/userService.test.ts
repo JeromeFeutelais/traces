@@ -1,6 +1,5 @@
 import chai from 'chai'
 import chaiHttp from 'chai-http'
-import app from '../app'
 import User  from '../models/user'
 import { expect } from 'chai'
 import { describe } from 'mocha'
@@ -59,6 +58,9 @@ describe('User', () => {
       createUser(user.email, user.password).then(async(user) => {
         //get validation token
         const newlyCreatedUser = await User.findOne({ email: user.email })
+        if (!newlyCreatedUser) {
+          return done('user not found')
+        }
         validateUser(user.email, newlyCreatedUser.validationToken).then((user) => {
           expect(user.validated).to.equal(true)
           done()
@@ -82,6 +84,9 @@ describe('User', () => {
       createUser(userTest.email, userTest.password).then(async(user) => {
         //get validation token
         const newlyCreatedUser = await User.findOne({ email: user.email })
+        if (!newlyCreatedUser) {
+          return done('user not found')
+        }
         validateUser(user.email, newlyCreatedUser.validationToken).then((user) => {
           login(userTest.email, userTest.password).then((user) => {
             expect(user).to.have.property('email')
@@ -127,6 +132,9 @@ describe('User', () => {
       }
       createUser(userTest.email, userTest.password).then(async(user) => {
         const newlyCreatedUser = await User.findOne({ email: user.email })
+        if (!newlyCreatedUser) {
+          return done('user not found')
+        }
         validateUser(userTest.email, newlyCreatedUser.validationToken).then((user) => {
           login(userTest.email, 'wrongPassword').then((user) => {
             console.log('user wrong pssword', user)

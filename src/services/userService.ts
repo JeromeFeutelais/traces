@@ -57,13 +57,13 @@ export async function login(email: String, password: String) {
 }
 
 //function to create a random string
-function randomString() {
+export  function randomString() {
   return Math.random().toString(36).slice(-8);
 }
 
 
 //function to hash a password
-async function hashPassword(password: String) {
+export async function hashPassword(password: String) {
   const salt = await bcrypt.genSalt(10);
   return bcrypt.hash(password.toString(), salt);
 }
