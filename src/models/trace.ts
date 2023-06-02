@@ -9,7 +9,7 @@ const Trace = new Schema({
   },
   Date: {
     type: Date,
-    default: Date.now()
+    default: Date.now
   },
   trace:Object
 })
